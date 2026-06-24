@@ -1,7 +1,16 @@
-import { useState, useRef } from "react";
-import { motion, AnimatePresence } from "motion/react";
-import { Play, Pause, Volume2, VolumeX, Maximize2, RotateCcw, Monitor, Sparkles } from "lucide-react";
-import { ASSETS } from "../data";
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import {
+  Play,
+  Pause,
+  Volume2,
+  VolumeX,
+  Maximize2,
+  RotateCcw,
+  Monitor,
+  Sparkles,
+} from 'lucide-react';
+import { ASSETS } from '../data';
 
 export default function Showreel() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -26,7 +35,7 @@ export default function Showreel() {
       className="py-24 md:py-32 bg-black relative overflow-hidden px-6 md:px-12"
     >
       {/* Background radial spotlight glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-gradient-to-r from-luxury-gold/5 via-white/[0.01] to-transparent rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-linear-to-r from-luxury-gold/5 via-white/1 to-transparent rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto space-y-12 relative z-10">
         {/* Title */}
@@ -38,18 +47,19 @@ export default function Showreel() {
             Watch Our Storytelling In Action
           </h2>
           <p className="text-sm text-luxury-silver font-light">
-            An immersive 2-minute visual journey outlining our production depth across four continents. Let the pictures talk.
+            An immersive 2-minute visual journey outlining our production depth
+            across four continents. Let the pictures talk.
           </p>
         </div>
 
         {/* Widescreen Cinema Board */}
-        <div className="relative max-w-5xl mx-auto rounded-none overflow-hidden border border-white/10 shadow-2xl bg-[#0B0B0B] group">
+        <div className="relative max-w-5xl mx-auto rounded-none overflow-hidden border border-white/10 shadow-2xl bg-luxury-charcoal group">
           {/* Main Visual Screen */}
           <div className="relative aspect-[16/9] w-full overflow-hidden">
             {/* Ambient Backlight Glow behind the screen - responsive to state */}
             <div
               className={`absolute inset-0 bg-luxury-gold/5 transition-opacity duration-1000 ${
-                isPlaying ? "opacity-30 animate-pulse" : "opacity-0"
+                isPlaying ? 'opacity-30 animate-pulse' : 'opacity-0'
               }`}
             />
 
@@ -60,7 +70,7 @@ export default function Showreel() {
               alt="RF Media Production Showreel Frame"
               referrerPolicy="no-referrer"
               className={`w-full h-full object-cover transition-transform duration-[8000ms] brightness-[0.7] ${
-                isPlaying ? "scale-105" : "scale-100"
+                isPlaying ? 'scale-105' : 'scale-100'
               }`}
             />
 
@@ -120,7 +130,7 @@ export default function Showreel() {
               </span>
             </div>
             <div className="absolute top-4 right-4 flex items-center gap-2">
-              <span className="text-[9px] font-display uppercase tracking-widest bg-red-600/20 text-red-500 px-2.5 py-1 rounded-sm border border-red-500/10 font-bold tracking-wider backdrop-blur-sm">
+              <span className="text-[9px] font-display uppercase tracking-widest bg-red-600/20 text-red-500 px-2.5 py-1 rounded-sm border border-red-500/10 font-bold backdrop-blur-sm">
                 DOLBY ATMOS
               </span>
             </div>
@@ -134,25 +144,29 @@ export default function Showreel() {
                 id="showreel-play-btn"
                 onClick={togglePlay}
                 className="text-white hover:text-luxury-gold transition-colors"
-                aria-label={isPlaying ? "Pause" : "Play"}
+                aria-label={isPlaying ? 'Pause' : 'Play'}
               >
-                {isPlaying ? <Pause size={18} /> : <Play size={18} className="fill-current" />}
+                {isPlaying ? (
+                  <Pause size={18} />
+                ) : (
+                  <Play size={18} className="fill-current" />
+                )}
               </button>
 
               {/* Progress Slider bar */}
               <div className="w-32 sm:w-64 bg-white/10 h-[3px] rounded-full relative cursor-pointer group/progress">
                 <div
                   className="bg-luxury-gold h-full rounded-full transition-all"
-                  style={{ width: `${isPlaying ? "65%" : "35%"}` }}
+                  style={{ width: `${isPlaying ? '65%' : '35%'}` }}
                 />
                 <div
                   className="absolute top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-white opacity-0 group-hover/progress:opacity-100 transition-opacity"
-                  style={{ left: `calc(${isPlaying ? "65%" : "35%"} - 5px)` }}
+                  style={{ left: `calc(${isPlaying ? '65%' : '35%'} - 5px)` }}
                 />
               </div>
 
               <span className="text-[10px] font-mono text-[#B8B8B8] select-none">
-                {isPlaying ? "01:14" : "00:35"} / 02:00
+                {isPlaying ? '01:14' : '00:35'} / 02:00
               </span>
             </div>
 
@@ -162,7 +176,7 @@ export default function Showreel() {
                 id="showreel-mute-btn"
                 onClick={handleMute}
                 className="text-white hover:text-luxury-gold transition-colors"
-                aria-label={isMuted ? "Unmute" : "Mute"}
+                aria-label={isMuted ? 'Unmute' : 'Mute'}
               >
                 {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
               </button>
@@ -170,7 +184,7 @@ export default function Showreel() {
               <button
                 id="showreel-maximize-btn"
                 onClick={() => {
-                  alert("Immersive Cinema View maximized. (Simulation)");
+                  alert('Immersive Cinema View maximized. (Simulation)');
                 }}
                 className="text-white hover:text-luxury-gold transition-colors"
                 aria-label="Fullscreen"
