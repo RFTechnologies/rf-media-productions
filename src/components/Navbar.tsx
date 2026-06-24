@@ -46,7 +46,7 @@ export default function Navbar({ onOpenInquiry }: NavbarProps) {
             : 'bg-transparent py-6'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+        <div className="w-full mx-auto px-6 md:px-12 flex items-center justify-between">
           {/* Brand Logo */}
           <button
             id="brand-logo"
