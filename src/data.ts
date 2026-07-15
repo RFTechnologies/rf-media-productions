@@ -2,7 +2,7 @@ import { Service, Project, Statistic, ChooseUsItem, ProcessStep, ChannelPost, Te
 
 // Custom generated asset paths
 export const ASSETS = {
-  heroResort: "/src/assets/images/hero_resort_sunset_1782315575683.jpg",
+  heroResort: "/src/assets/images/hero.jpg",
   aboutFilm: "/src/assets/images/about_film_production_1782315594605.jpg",
   hotelVilla: "/src/assets/images/hotel_resort_villa_1782315614320.jpg",
   culinaryFine: "/src/assets/images/gourmet_cuisine_travel_1782315636610.jpg",
