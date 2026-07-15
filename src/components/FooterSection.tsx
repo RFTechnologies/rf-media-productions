@@ -1,5 +1,5 @@
 import { Phone, Mail, MapPin, MessageSquare, Instagram, Youtube, Film, ArrowUp } from "lucide-react";
-
+import Logo from '../assets/images/RF Logo Final2-01.png';
 export default function FooterSection() {
   const currentYear = new Date().getFullYear();
 
@@ -11,17 +11,22 @@ export default function FooterSection() {
     <footer
       id="luxury-footer"
       className="bg-[#0B0B0B] text-luxury-silver pt-20 pb-10 border-t border-white/5 relative px-6 md:px-12"
-    >
-      <div className="max-w-7xl mx-auto space-y-16">
+    > <div className="max-w-7xl mx-auto space-y-16">
         {/* Top brand & Scroll Back */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-12 border-b border-white/5">
+        
           <div className="text-center md:text-left">
-            <span className="font-display text-xl font-bold tracking-[0.3em] text-white">
+            {/* <span className="font-display text-xl font-bold tracking-[0.3em] text-white">
               RF MEDIA
             </span>
             <span className="font-serif italic text-xs tracking-widest text-luxury-gold ml-2">
               PRODUCTIONS
-            </span>
+            </span> */}
+                 <img
+              src={Logo}
+              alt="RF Logo"
+              className="h-12.5 object-contain shrink-0"
+            />
             <p className="text-xs text-luxury-silver/60 mt-2 font-light tracking-wide">
               Bespoke cinematic directions for world-class hospitality, travel, & commercial brands.
             </p>
@@ -147,7 +152,7 @@ export default function FooterSection() {
               <li className="flex items-center gap-3">
                 <Mail size={14} className="text-luxury-silver shrink-0" />
                 <span className="text-white hover:text-luxury-gold transition-colors font-mono">
-                  concierge@rfmedia.productions
+                  info@rfmedia.productions
                 </span>
               </li>
               <li className="flex items-start gap-3">

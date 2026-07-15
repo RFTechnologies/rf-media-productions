@@ -11,8 +11,8 @@ import {
 // Custom generated asset paths
 export const ASSETS = {
   heroResort: '/src/assets/images/herobanner.jpg',
-  aboutFilm: '/src/assets/images/about_film_production_1782315594605.jpg',
-  hotelVilla: '/src/assets/images/hotel_resort_villa_1782315614320.jpg',
+  aboutFilm: '/src/assets/images/about.jpg',
+  hotelVilla: 'https://images.pexels.com/photos/23384400/pexels-photo-23384400.jpeg',
   culinaryFine: '/src/assets/images/gourmet_cuisine_travel_1782315636610.jpg',
 };
 
@@ -174,7 +174,7 @@ export const PROJECTS: Project[] = [
     description:
       'A cinematic masterpiece using high-speed FPV drones mapping the raw volcanic fissures and black sand rivers.',
     thumbnail:
-      'https://images.unsplash.com/photo-1504893524553-ac55fce698be?auto=format&fit=crop&q=80&w=800',
+      'https://images.pexels.com/photos/20165201/pexels-photo-20165201.jpeg',
     challenge:
       'Navigating high winds, volcanic gases, and extreme magnetic interference to capture smooth, low-altitude cinematic runs.',
     solution:
@@ -216,7 +216,7 @@ export const PROJECTS: Project[] = [
     year: '2025',
     description:
       'A brand storytelling film looking into the obsessive craftsmanship and manual glass-polishing processes in Germany.',
-    thumbnail: ASSETS.aboutFilm,
+    thumbnail: 'https://images.pexels.com/photos/20322863/pexels-photo-20322863.jpeg',
     challenge:
       'Visualizing technical, microscopic engineering in a poetic, romantic way that targets photography purists.',
     solution:
@@ -238,7 +238,7 @@ export const PROJECTS: Project[] = [
     description:
       'A historical storytelling campaign capturing the rock-carved tombs and modern mirrors of Maraya Concert Hall.',
     thumbnail:
-      'https://images.unsplash.com/photo-1547124226-564bb0283f3d?auto=format&fit=crop&q=80&w=800',
+      'https://images.pexels.com/photos/6768980/pexels-photo-6768980.jpeg',
     challenge:
       'Showing the dramatic shift from 2,000-year-old Nabataean history to high-end contemporary luxury events.',
     solution:

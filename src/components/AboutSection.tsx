@@ -17,7 +17,7 @@ export default function AboutSection() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-5 relative group"
+          className="lg:col-span-5 relative group min-h-96"
         >
           {/* Accent thin double-border frame */}
           <div className="absolute -inset-4 border border-white/5 rounded-none pointer-events-none group-hover:border-luxury-gold/20 transition-colors duration-500" />
@@ -27,7 +27,7 @@ export default function AboutSection() {
               src={ASSETS.aboutFilm}
               alt="RF Media Production behind the scenes set"
               referrerPolicy="no-referrer"
-              className="w-full h-full object-cover aspect-[4/5] transform group-hover:scale-105 transition-transform duration-700 brightness-[0.9]"
+              className="!w-full !h-full   object-cover aspect-[4/5] transform group-hover:scale-105 transition-transform duration-700 brightness-[0.9]"
             />
           </div>
 
@@ -122,7 +122,7 @@ function CounterBlock({ stat }: { stat: typeof STATISTICS[0] }) {
 
       const duration = 1500; // 1.5 seconds total counting time
       const incrementTime = Math.max(Math.floor(duration / end), 12);
-      
+
       const timer = setInterval(() => {
         start += Math.ceil(end / 40); // larger steps for higher numbers
         if (start >= end) {

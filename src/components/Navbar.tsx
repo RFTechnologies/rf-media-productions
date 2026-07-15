@@ -56,7 +56,7 @@ export default function Navbar({ onOpenInquiry }: NavbarProps) {
             <img
               src={Logo}
               alt="RF Logo"
-              className="w-80 h-12.5 object-contain shrink-0"
+              className="h-12.5 object-contain shrink-0"
             />
           </button>
 

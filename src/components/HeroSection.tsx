@@ -110,7 +110,7 @@ export default function HeroSection({ onOpenInquiry, onPlayShowreel }: HeroSecti
       </div>
 
       {/* Decorative vertical lines and stats previews */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10 cursor-pointer"
+      <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10 cursor-pointer"
            onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}>
         <span className="text-[10px] font-display uppercase tracking-[0.25em] text-[#B8B8B8] opacity-60">
           Scroll to explore
