@@ -109,22 +109,22 @@ export default function FooterSection() {
             </h4>
             <ul className="space-y-2.5 text-xs font-light">
               {/* <li>
-                <a href="#featured-work" className="hover:text-luxury-gold transition-colors">
+                <a href="#our-brand" className="hover:text-luxury-gold transition-colors">
                   Boutique Hotels
                 </a>
               </li>
               <li>
-                <a href="#featured-work" className="hover:text-luxury-gold transition-colors">
+                <a href="#our-brand" className="hover:text-luxury-gold transition-colors">
                   Michelin Restaurants
                 </a>
               </li>
               <li>
-                <a href="#featured-work" className="hover:text-luxury-gold transition-colors">
+                <a href="#our-brand" className="hover:text-luxury-gold transition-colors">
                   Cultural Tourism
                 </a>
               </li> */}
               <li>
-                <a href="#featured-work" className="hover:text-luxury-gold transition-colors">
+                <a href="#our-brand" className="hover:text-luxury-gold transition-colors">
                   Miles & Meals
                 </a>
               </li>
@@ -166,7 +166,7 @@ export default function FooterSection() {
               <li className="flex items-start gap-3">
                 <MapPin size={14} className="text-luxury-silver shrink-0 mt-0.5" />
                 <span className="text-white font-light leading-relaxed">
-                 2nd floor, Central Mall, GT Rd, Zaraj Housing Society DHA Phase II, Islamabad, 44000
+                  2nd floor, Central Mall, GT Rd, Zaraj Housing Society DHA Phase II, Islamabad, 44000
                 </span>
               </li>
             </ul>

@@ -16,7 +16,7 @@ export default function FeaturedWork() {
 
   return (
     <section
-      id="featured-work"
+      id="our-brand"
       className="py-24 md:py-32 bg-[#0B0B0B] relative px-6 md:px-12 border-b border-white/5"
     >
       <div className="max-w-7xl mx-auto space-y-16">
@@ -27,7 +27,7 @@ export default function FeaturedWork() {
               Portfolio
             </span>
             <h2 className="text-3xl sm:text-5xl font-serif text-white font-normal tracking-wide">
-              Featured Work
+              Brands
             </h2>
             <p className="text-sm text-luxury-silver font-light max-w-lg">
               Cinematic masterpieces crafted for world-renowned luxury brands, luxury hotels, and Michelin culinary houses.

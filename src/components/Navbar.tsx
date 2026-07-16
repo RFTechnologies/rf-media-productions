@@ -30,7 +30,7 @@ export default function Navbar({ onOpenInquiry }: NavbarProps) {
   const menuItems = [
     { label: 'About', id: 'about' },
     { label: 'Services', id: 'services' },
-    { label: 'Featured Work', id: 'featured-work' },
+    { label: 'Our Brands', id: 'our-brand' },
     { label: 'Showreel', id: 'showreel' },
     { label: 'Process', id: 'process' },
     // { label: 'Miles & Meals', id: 'miles-meals' },
