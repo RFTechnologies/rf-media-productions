@@ -131,7 +131,7 @@ export const PROJECTS: Project[] = [
     category: "Miles & Meals",
     client: "Miles & Meals",
     location: "Islamabad, Pakistan",
-    year: "2026",
+    year: "2026", 
     description:
       "A premium media production project created to establish Miles & Meals as a distinctive travel and culinary brand. The content blends destination storytelling, food experiences, and cinematic visuals to inspire audiences to explore new places and memorable flavours.",
     thumbnail:
