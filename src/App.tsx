@@ -52,7 +52,7 @@ export default function App() {
         />
 
         {/* Section 2: Trusted By Logo Marquee */}
-        <TrustedBy />
+        {/* <TrustedBy /> */}
 
         {/* Section 3: About RF Media */}
         <AboutSection />
@@ -76,10 +76,10 @@ export default function App() {
         <HotelPartnership onOpenInquiry={handleOpenInquiry} />
 
         {/* Section 10: Miles & Meals (Travel and Food Channel posts) */}
-        <MilesMeals />
+        {/* <MilesMeals /> */}
 
         {/* Section 11: Testimonials Carousel */}
-        <Testimonials />
+        {/* <Testimonials /> */}
 
         {/* Section 12: Call To Action Banner */}
         <CTASection onOpenInquiry={handleOpenInquiry} />

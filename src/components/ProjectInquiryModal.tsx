@@ -123,11 +123,10 @@ export default function ProjectInquiryModal({
                   id="tab-project"
                   type="button"
                   onClick={() => setFormType("project")}
-                  className={`py-2 text-xs font-display tracking-wider rounded-none transition-all ${
-                    formType === "project"
+                  className={`py-2 text-xs font-display tracking-wider rounded-none transition-all ${formType === "project"
                       ? "bg-luxury-gold text-luxury-charcoal font-semibold"
                       : "text-[#B8B8B8] hover:text-white hover:bg-white/5"
-                  }`}
+                    }`}
                 >
                   Project
                 </button>
@@ -135,11 +134,10 @@ export default function ProjectInquiryModal({
                   id="tab-call"
                   type="button"
                   onClick={() => setFormType("call")}
-                  className={`py-2 text-xs font-display tracking-wider rounded-none transition-all ${
-                    formType === "call"
+                  className={`py-2 text-xs font-display tracking-wider rounded-none transition-all ${formType === "call"
                       ? "bg-luxury-gold text-luxury-charcoal font-semibold"
                       : "text-[#B8B8B8] hover:text-white hover:bg-white/5"
-                  }`}
+                    }`}
                 >
                   Discovery Call
                 </button>
@@ -147,11 +145,10 @@ export default function ProjectInquiryModal({
                   id="tab-hotel"
                   type="button"
                   onClick={() => setFormType("hotel")}
-                  className={`py-2 text-xs font-display tracking-wider rounded-none transition-all ${
-                    formType === "hotel"
+                  className={`py-2 text-xs font-display tracking-wider rounded-none transition-all ${formType === "hotel"
                       ? "bg-luxury-gold text-luxury-charcoal font-semibold"
                       : "text-[#B8B8B8] hover:text-white hover:bg-white/5"
-                  }`}
+                    }`}
                 >
                   Hotel Partnership
                 </button>

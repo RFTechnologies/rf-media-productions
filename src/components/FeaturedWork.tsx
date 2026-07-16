@@ -8,7 +8,7 @@ export default function FeaturedWork() {
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  const categories = ["All", "Hotels", "Restaurants", "Travel", "Tourism", "Commercial"];
+  const categories = ["All", "Miles & Meals"];
 
   const filteredProjects = activeCategory === "All"
     ? PROJECTS
