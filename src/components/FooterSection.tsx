@@ -139,18 +139,18 @@ export default function FooterSection() {
             <ul className="space-y-3.5 text-xs font-light">
               <li className="flex items-center gap-3">
                 <Phone size={14} className="text-luxury-silver shrink-0" />
-                <a href="tel:+923064015125" className="text-white hover:text-luxury-gold transition-colors font-mono">
-                  +92 306 4015125
+                <a href="tel:+923496238506" className="text-white hover:text-luxury-gold transition-colors font-mono">
+                  +92 349 6238506
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <MessageSquare size={14} className="text-luxury-silver shrink-0" />
                 <a className="text-white hover:text-luxury-gold transition-colors font-mono"
-                  href="https://wa.me/923064015125?text=Hello%20RF%20Media%20Productions%2C%0A%0AI%20came%20across%20your%20work%20and%20would%20like%20to%20discuss%20a%20potential%20project%20with%20your%20team.%20Please%20let%20me%20know%20how%20we%20can%20get%20started.%0A%0AThank%20you."
+                  href="https://wa.me/+923496238506?text=Hello%20RF%20Media%20Productions%2C%0A%0AI%20came%20across%20your%20work%20and%20would%20like%20to%20discuss%20a%20potential%20project%20with%20your%20team.%20Please%20let%20me%20know%20how%20we%20can%20get%20started.%0A%0AThank%2 you."
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  +92 3064015125 (Chat on WhatsApp)
+                  +92 349 6238506 (Chat on WhatsApp)
                 </a>
               </li>
               <li className="flex items-center gap-3">
@@ -162,7 +162,7 @@ export default function FooterSection() {
               <li className="flex items-start gap-3">
                 <MapPin size={14} className="text-luxury-silver shrink-0 mt-0.5" />
                 <span className="text-white font-light leading-relaxed">
-                  3rd floor Taha Mall, Defence Rd, Rawalpindi, Punjab 47300
+                 2nd floor, Central Mall, GT Rd, Zaraj Housing Society DHA Phase II, Islamabad, 44000
                 </span>
               </li>
             </ul>
