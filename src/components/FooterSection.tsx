@@ -155,9 +155,13 @@ export default function FooterSection() {
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={14} className="text-luxury-silver shrink-0" />
-                <span className="text-white hover:text-luxury-gold transition-colors font-mono">
-                  info@rfmedia.productions
-                </span>
+                <a className="text-white hover:text-luxury-gold transition-colors font-mono"
+                  href="mailto:info@rfmediaproductions.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  info@rfmediaproductions.com
+                </a>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin size={14} className="text-luxury-silver shrink-0 mt-0.5" />
