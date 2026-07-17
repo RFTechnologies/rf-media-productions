@@ -40,7 +40,7 @@ export default function HeroSection({ onOpenInquiry, onPlayShowreel }: HeroSecti
           transition={{ delay: 0.5, duration: 0.8 }}
           className="inline-block px-4 py-1.5 border border-luxury-gold/50 text-luxury-gold text-[10px] font-display uppercase tracking-[0.3em] bg-luxury-charcoal/50 backdrop-blur-md"
         >
-          Now Premiering: Aman Kyoto Cinematic Reel
+          Now Premiering: Rf Media Cinematic Reel
         </motion.div>
 
         {/* Headline */}

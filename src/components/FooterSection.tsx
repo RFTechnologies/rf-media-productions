@@ -14,7 +14,7 @@ export default function FooterSection() {
     > <div className="max-w-7xl mx-auto space-y-16">
         {/* Top brand & Scroll Back */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-12 border-b border-white/5">
-        
+
           <div className="text-center md:text-left">
             {/* <span className="font-display text-xl font-bold tracking-[0.3em] text-white">
               RF MEDIA
@@ -22,10 +22,10 @@ export default function FooterSection() {
             <span className="font-serif italic text-xs tracking-widest text-luxury-gold ml-2">
               PRODUCTIONS
             </span> */}
-                 <img
-              src={Logo}
+            <img
+              src="https://res.cloudinary.com/dzmrdbwqh/image/upload/v1784194928/RF%20Media%20Production/Rf%20Media%20Production%20Logo.png"
               alt="RF Logo"
-              className="h-12.5 object-contain shrink-0"
+              className="h-14 object-contain shrink-0"
             />
             <p className="text-xs text-luxury-silver/60 mt-2 font-light tracking-wide">
               Bespoke cinematic directions for world-class hospitality, travel, & commercial brands.
@@ -66,9 +66,9 @@ export default function FooterSection() {
                 </a>
               </li>
               <li>
-                <a href="#testimonials" className="hover:text-luxury-gold transition-colors">
+                {/* <a href="#testimonials" className="hover:text-luxury-gold transition-colors">
                   Client Reviews
-                </a>
+                </a> */}
               </li>
             </ul>
           </div>
@@ -108,23 +108,23 @@ export default function FooterSection() {
               Film Portfolios
             </h4>
             <ul className="space-y-2.5 text-xs font-light">
-              <li>
-                <a href="#featured-work" className="hover:text-luxury-gold transition-colors">
+              {/* <li>
+                <a href="#our-brand" className="hover:text-luxury-gold transition-colors">
                   Boutique Hotels
                 </a>
               </li>
               <li>
-                <a href="#featured-work" className="hover:text-luxury-gold transition-colors">
+                <a href="#our-brand" className="hover:text-luxury-gold transition-colors">
                   Michelin Restaurants
                 </a>
               </li>
               <li>
-                <a href="#featured-work" className="hover:text-luxury-gold transition-colors">
+                <a href="#our-brand" className="hover:text-luxury-gold transition-colors">
                   Cultural Tourism
                 </a>
-              </li>
+              </li> */}
               <li>
-                <a href="#miles-meals" className="hover:text-luxury-gold transition-colors">
+                <a href="#our-brand" className="hover:text-luxury-gold transition-colors">
                   Miles & Meals
                 </a>
               </li>
@@ -139,26 +139,34 @@ export default function FooterSection() {
             <ul className="space-y-3.5 text-xs font-light">
               <li className="flex items-center gap-3">
                 <Phone size={14} className="text-luxury-silver shrink-0" />
-                <span className="text-white hover:text-luxury-gold transition-colors font-mono">
-                  +1 (212) 555-0199
-                </span>
+                <a href="tel:+923496238506" className="text-white hover:text-luxury-gold transition-colors font-mono">
+                  +92 349 6238506
+                </a>
               </li>
               <li className="flex items-center gap-3">
                 <MessageSquare size={14} className="text-luxury-silver shrink-0" />
-                <span className="text-white hover:text-luxury-gold transition-colors font-mono">
-                  +1 (212) 555-0195 (WhatsApp)
-                </span>
+                <a className="text-white hover:text-luxury-gold transition-colors font-mono"
+                  href="https://wa.me/+923496238506?text=Hello%20RF%20Media%20Productions%2C%0A%0AI%20came%20across%20your%20work%20and%20would%20like%20to%20discuss%20a%20potential%20project%20with%20your%20team.%20Please%20let%20me%20know%20how%20we%20can%20get%20started.%0A%0AThank%2 you."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  +92 349 6238506 (Chat on WhatsApp)
+                </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={14} className="text-luxury-silver shrink-0" />
-                <span className="text-white hover:text-luxury-gold transition-colors font-mono">
-                  info@rfmedia.productions
-                </span>
+                <a className="text-white hover:text-luxury-gold transition-colors font-mono"
+                  href="mailto:info@rfmediaproductions.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  info@rfmediaproductions.com
+                </a>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin size={14} className="text-luxury-silver shrink-0 mt-0.5" />
                 <span className="text-white font-light leading-relaxed">
-                  Suite 950, Ritz-Carlton Plaza, New York, NY 10019
+                  2nd floor, Central Mall, GT Rd, Zaraj Housing Society DHA Phase II, Islamabad, 44000
                 </span>
               </li>
             </ul>

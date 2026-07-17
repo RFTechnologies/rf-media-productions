@@ -30,7 +30,7 @@ export default function ServicesSection({ onOpenInquiry }: ServicesSectionProps)
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ">
           {SERVICES.map((service, idx) => {
             // Get Lucide Icon dynamically
             const IconComponent = (LucideIcons as any)[service.iconName] || LucideIcons.Sparkles;
@@ -46,8 +46,8 @@ export default function ServicesSection({ onOpenInquiry }: ServicesSectionProps)
                 className="group relative bg-[#1A1A1A] p-8 rounded-none border border-white/[0.04] hover:border-luxury-gold/20 hover:shadow-2xl hover:shadow-luxury-gold/[0.02] transition-all duration-500 flex flex-col justify-between"
               >
                 {/* Background decorative accent card number */}
-                <span className="absolute top-6 right-6 text-3xl font-display font-bold text-white/[0.02] group-hover:text-luxury-gold/[0.04] transition-colors duration-500 select-none">
-                  {(idx + 1).toString().padStart(2, "0")}
+                <span className="absolute top-6 right-6 text-3xl font-display font-bold text-white/[0.02] group-hover:text-luxury-gold transition-colors duration-500 select-none">
+                  {(idx + 1).toString().padStart(2, "0")} 
                 </span>
 
                 <div className="space-y-6">
@@ -68,7 +68,7 @@ export default function ServicesSection({ onOpenInquiry }: ServicesSectionProps)
                 </div>
 
                 {/* Micro Action CTA link */}
-                <div className="pt-6 mt-6 border-t border-white/[0.03] flex items-center justify-between">
+                {/* <div className="pt-6 mt-6 border-t border-white/[0.03] flex items-center justify-between">
                   <button
                     id={`service-card-btn-${service.id}`}
                     onClick={() => {
@@ -83,7 +83,7 @@ export default function ServicesSection({ onOpenInquiry }: ServicesSectionProps)
                     Discuss Campaign
                     <LucideIcons.ArrowUpRight size={12} className="transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </button>
-                </div>
+                </div> */}
               </motion.div>
             );
           })}
