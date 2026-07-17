@@ -41,7 +41,7 @@ type ApiResponse = {
  */
 const CONTACT_API_URL =
   "https://rftechnologies-api.vercel.app/contact-us";
-  
+
 
 const inquiryFormSchema = z
   .object({
@@ -398,8 +398,8 @@ export default function ProjectInquiryModal({
       if (!response.ok) {
         throw new Error(
           result?.message ||
-            result?.error ||
-            `Request failed with status ${response.status}.`
+          result?.error ||
+          `Request failed with status ${response.status}.`
         );
       }
 
@@ -412,8 +412,8 @@ export default function ProjectInquiryModal({
       ) {
         throw new Error(
           result?.message ||
-            result?.error ||
-            "The server could not process your request."
+          result?.error ||
+          "The server could not process your request."
         );
       }
 
@@ -583,11 +583,10 @@ export default function ProjectInquiryModal({
                       onClick={() =>
                         handleFormTypeChange("project")
                       }
-                      className={`rounded-none py-2 font-display text-xs tracking-wider transition-all disabled:cursor-not-allowed ${
-                        formType === "project"
+                      className={`rounded-none py-2 font-display text-xs tracking-wider transition-all disabled:cursor-not-allowed ${formType === "project"
                           ? "bg-luxury-gold font-semibold text-luxury-charcoal"
                           : "text-[#B8B8B8] hover:bg-white/5 hover:text-white"
-                      }`}
+                        }`}
                     >
                       Project
                     </button>
@@ -599,11 +598,10 @@ export default function ProjectInquiryModal({
                       onClick={() =>
                         handleFormTypeChange("call")
                       }
-                      className={`rounded-none py-2 font-display text-xs tracking-wider transition-all disabled:cursor-not-allowed ${
-                        formType === "call"
+                      className={`rounded-none py-2 font-display text-xs tracking-wider transition-all disabled:cursor-not-allowed ${formType === "call"
                           ? "bg-luxury-gold font-semibold text-luxury-charcoal"
                           : "text-[#B8B8B8] hover:bg-white/5 hover:text-white"
-                      }`}
+                        }`}
                     >
                       Discovery Call
                     </button>
@@ -615,11 +613,10 @@ export default function ProjectInquiryModal({
                       onClick={() =>
                         handleFormTypeChange("hotel")
                       }
-                      className={`rounded-none py-2 font-display text-xs tracking-wider transition-all disabled:cursor-not-allowed ${
-                        formType === "hotel"
+                      className={`rounded-none py-2 font-display text-xs tracking-wider transition-all disabled:cursor-not-allowed ${formType === "hotel"
                           ? "bg-luxury-gold font-semibold text-luxury-charcoal"
                           : "text-[#B8B8B8] hover:bg-white/5 hover:text-white"
-                      }`}
+                        }`}
                     >
                       Hotel Partnership
                     </button>

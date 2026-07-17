@@ -139,7 +139,7 @@ export const PROJECTS: Project[] = [
     challenge:
       "Miles & Meals needed a strong visual identity and engaging media content that could communicate both travel and dining experiences while maintaining a consistent, premium look across digital platforms.",
     solution:
-      "WWe developed a cinematic content direction combining destination footage, detailed food visuals, lifestyle moments, and branded storytelling. Our team managed the complete production process, from creative planning and filming to editing, colour grading, sound design, and social media-ready deliverables.",
+      "We developed a cinematic content direction combining destination footage, detailed food visuals, lifestyle moments, and branded storytelling. Our team managed the complete production process, from creative planning and filming to editing, colour grading, sound design, and social media-ready deliverables.",
     scope: [
          "Creative Direction",
     "Cinematic Video Production",
