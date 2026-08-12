@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { X, Calendar, MapPin, Film, Layers, CheckCircle2, Play, ChevronRight } from "lucide-react";
+import { X, Calendar, MapPin, Film, Layers, CheckCircle2, Play, ChevronRight, Instagram, Youtube, Facebook } from "lucide-react";
 import { PROJECTS } from "../data";
 import { Project } from "../types";
+import { FaTiktok } from "react-icons/fa6";
 
 export default function FeaturedWork() {
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  const categories = ["All", "Hotels", "Restaurants", "Travel", "Tourism", "Commercial"];
+  const categories = ["All", "Miles & Meals"];
 
   const filteredProjects = activeCategory === "All"
     ? PROJECTS
@@ -16,7 +17,7 @@ export default function FeaturedWork() {
 
   return (
     <section
-      id="featured-work"
+      id="our-brand"
       className="py-24 md:py-32 bg-[#0B0B0B] relative px-6 md:px-12 border-b border-white/5"
     >
       <div className="max-w-7xl mx-auto space-y-16">
@@ -27,7 +28,7 @@ export default function FeaturedWork() {
               Portfolio
             </span>
             <h2 className="text-3xl sm:text-5xl font-serif text-white font-normal tracking-wide">
-              Featured Work
+              Brands
             </h2>
             <p className="text-sm text-luxury-silver font-light max-w-lg">
               Cinematic masterpieces crafted for world-renowned luxury brands, luxury hotels, and Michelin culinary houses.
@@ -41,11 +42,10 @@ export default function FeaturedWork() {
                 id={`portfolio-tab-${category}`}
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-4 py-2 text-xs font-display uppercase tracking-[0.15em] relative transition-all duration-300 ${
-                  activeCategory === category
-                    ? "text-luxury-gold font-semibold"
-                    : "text-luxury-silver hover:text-white"
-                }`}
+                className={`px-4 py-2 text-xs font-display uppercase tracking-[0.15em] relative transition-all duration-300 ${activeCategory === category
+                  ? "text-luxury-gold font-semibold"
+                  : "text-luxury-silver hover:text-white"
+                  }`}
               >
                 {category}
                 {activeCategory === category && (
@@ -167,9 +167,51 @@ export default function FeaturedWork() {
                   <span className="text-xs uppercase tracking-[0.25em] text-luxury-gold font-display font-medium">
                     {selectedProject.category} • {selectedProject.year}
                   </span>
+
                   <h3 className="text-2xl sm:text-4xl font-serif text-white font-medium">
                     {selectedProject.name}
                   </h3>
+                  <div className="flex items-center gap-3 my-2">
+                    <a
+                      href="https://www.instagram.com/milesmealsofficial"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-luxury-silver hover:text-luxury-gold transition-colors p-2 rounded-full hover:bg-white/5"
+                      aria-label="Instagram"
+                    >
+                      <Instagram size={20} />
+                    </a>
+                    <a
+                      href="https://www.facebook.com/Milesmealsofficial/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-luxury-silver hover:text-luxury-gold transition-colors p-2 rounded-full hover:bg-white/5"
+                      aria-label="Instagram"
+                    >
+                      <Facebook size={20} />
+                    </a>
+                    <a
+                      href="https://www.youtube.com/@milesmealsofficial"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-luxury-silver hover:text-luxury-gold transition-colors p-2 rounded-full hover:bg-white/5"
+                      aria-label="YouTube"
+                    >
+                      <Youtube size={20} />
+                    </a>
+                    <a
+                      href="https://www.tiktok.com/@milesmealsofficial  "
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-luxury-silver hover:text-luxury-gold transition-colors p-2 rounded-full hover:bg-white/5"
+                      aria-label="Vimeo / Film Portfolio"
+                    >
+                      {/* <Tiktok size={20} /> */}
+                      <FaTiktok />
+                    </a>
+                  </div>
+
+
                 </div>
               </div>
 
@@ -185,6 +227,7 @@ export default function FeaturedWork() {
                       {selectedProject.client}
                     </span>
                   </div>
+
                   <div>
                     <span className="text-[10px] font-display uppercase tracking-widest text-[#B8B8B8] block flex items-center gap-1">
                       <MapPin size={10} className="text-luxury-silver" /> Destination

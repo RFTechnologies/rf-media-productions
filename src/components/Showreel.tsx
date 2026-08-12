@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   Play,
@@ -7,144 +7,245 @@ import {
   VolumeX,
   Maximize2,
   RotateCcw,
-  Monitor,
-  Sparkles,
 } from 'lucide-react';
 import { ASSETS } from '../data';
 
+const VIDEO_URL =
+  'https://res.cloudinary.com/dzmrdbwqh/video/upload/v1784197396/RF%20Media%20Production/Productioni%20Video.mp4';
+
 export default function Showreel() {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
-  const [progress, setProgress] = useState(35); // Simulated progress point
-  const [showNotification, setShowNotification] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
 
-  // Toggle playback simulation
-  const togglePlay = () => {
-    setIsPlaying(!isPlaying);
-    setShowNotification(true);
-    setTimeout(() => setShowNotification(false), 2000);
+  const togglePlay = async () => {
+    const video = videoRef.current;
+
+    if (!video) return;
+
+    try {
+      if (video.paused) {
+        await video.play();
+      } else {
+        video.pause();
+      }
+    } catch (error) {
+      console.error('Unable to play the showreel video:', error);
+    }
   };
 
   const handleMute = () => {
-    setIsMuted(!isMuted);
+    const video = videoRef.current;
+
+    if (!video) return;
+
+    const nextMutedState = !video.muted;
+    video.muted = nextMutedState;
+    setIsMuted(nextMutedState);
   };
+
+  const handleTimeUpdate = () => {
+    const video = videoRef.current;
+
+    if (!video || !video.duration) return;
+
+    setCurrentTime(video.currentTime);
+    setProgress((video.currentTime / video.duration) * 100);
+  };
+
+  const handleLoadedMetadata = () => {
+    const video = videoRef.current;
+
+    if (!video) return;
+
+    setDuration(video.duration);
+    setCurrentTime(video.currentTime);
+    setProgress(
+      video.duration ? (video.currentTime / video.duration) * 100 : 0,
+    );
+  };
+
+  const handleSeek = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const video = videoRef.current;
+
+    if (!video || !video.duration) return;
+
+    const nextProgress = Number(event.target.value);
+    const nextTime = (nextProgress / 100) * video.duration;
+
+    video.currentTime = nextTime;
+    setCurrentTime(nextTime);
+    setProgress(nextProgress);
+  };
+
+  const restartVideo = async () => {
+    const video = videoRef.current;
+
+    if (!video) return;
+
+    video.currentTime = 0;
+    setCurrentTime(0);
+    setProgress(0);
+
+    try {
+      await video.play();
+    } catch (error) {
+      console.error('Unable to restart the showreel video:', error);
+    }
+  };
+
+  const openFullscreen = async () => {
+    const video = videoRef.current;
+
+    if (!video) return;
+
+    try {
+      if (video.requestFullscreen) {
+        await video.requestFullscreen();
+      } else {
+        const safariVideo = video as HTMLVideoElement & {
+          webkitEnterFullscreen?: () => void;
+        };
+
+        safariVideo.webkitEnterFullscreen?.();
+      }
+    } catch (error) {
+      console.error('Unable to enter fullscreen mode:', error);
+    }
+  };
+
+  const formatTime = (time: number) => {
+    if (!Number.isFinite(time)) return '00:00';
+
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+
+    return `${minutes.toString().padStart(2, '0')}:${seconds
+      .toString()
+      .padStart(2, '0')}`;
+  };
+
+  useEffect(() => {
+    const video = videoRef.current;
+
+    if (!video) return;
+
+    video.muted = isMuted;
+  }, [isMuted]);
 
   return (
     <section
       id="showreel"
-      className="py-24 md:py-32 bg-black relative overflow-hidden px-6 md:px-12"
+      className="relative overflow-hidden bg-black px-6 py-24 md:px-12 md:py-32"
     >
       {/* Background radial spotlight glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-linear-to-r from-luxury-gold/5 via-white/1 to-transparent rounded-full blur-3xl pointer-events-none" />
+      <div className="pointer-events-none absolute top-1/2 left-1/2 h-[80%] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-linear-to-r from-luxury-gold/5 via-white/1 to-transparent blur-3xl" />
 
-      <div className="max-w-7xl mx-auto space-y-12 relative z-10">
+      <div className="relative z-10 mx-auto max-w-7xl space-y-12">
         {/* Title */}
-        <div className="text-center space-y-4 max-w-2xl mx-auto">
-          <span className="text-xs uppercase tracking-[0.3em] text-luxury-gold font-display font-medium">
-            2026 Directors Cut
+        <div className="mx-auto max-w-2xl space-y-4 text-center">
+          <span className="font-display text-luxury-gold text-xs font-medium tracking-[0.3em] uppercase">
+            2026 Director&apos;s Cut
           </span>
-          <h2 className="text-3xl sm:text-5xl font-serif text-white font-normal tracking-wide">
+
+          <h2 className="font-serif text-3xl font-normal tracking-wide text-white sm:text-5xl">
             Watch Our Storytelling In Action
           </h2>
-          <p className="text-sm text-luxury-silver font-light">
-            An immersive 2-minute visual journey outlining our production depth
-            across four continents. Let the pictures talk.
+
+          <p className="text-luxury-silver text-sm font-light">
+            An immersive visual journey outlining our production depth across
+            four continents. Let the pictures talk.
           </p>
         </div>
 
         {/* Widescreen Cinema Board */}
-        <div className="relative max-w-5xl mx-auto rounded-none overflow-hidden border border-white/10 shadow-2xl bg-luxury-charcoal group">
-          {/* Main Visual Screen */}
-          <div className="relative aspect-[16/9] w-full overflow-hidden">
-            {/* Ambient Backlight Glow behind the screen - responsive to state */}
+        <div className="group relative mx-auto max-w-5xl overflow-hidden rounded-none border border-white/10 bg-luxury-charcoal shadow-2xl">
+          {/* Main Video Screen */}
+          <div className="relative aspect-video w-full overflow-hidden">
             <div
-              className={`absolute inset-0 bg-luxury-gold/5 transition-opacity duration-1000 ${
-                isPlaying ? 'opacity-30 animate-pulse' : 'opacity-0'
+              className={`pointer-events-none absolute inset-0 z-10 bg-luxury-gold/5 transition-opacity duration-1000 ${
+                isPlaying ? 'animate-pulse opacity-30' : 'opacity-0'
               }`}
             />
 
-            {/* Cinematic Background Image representing the frame */}
-            <img
-              id="showreel-video-fallback"
-              src={ASSETS.heroResort}
-              alt="RF Media Production Showreel Frame"
-              referrerPolicy="no-referrer"
-              className={`w-full h-full object-cover transition-transform duration-[8000ms] brightness-[0.7] ${
-                isPlaying ? 'scale-105' : 'scale-100'
-              }`}
-            />
+            <video
+              ref={videoRef}
+              id="showreel-video"
+              className="h-full w-full object-cover"
+              poster={ASSETS.poster}
+              preload="metadata"
+              playsInline
+              muted={isMuted}
+              onClick={togglePlay}
+              onPlay={() => setIsPlaying(true)}
+              onPause={() => setIsPlaying(false)}
+              onEnded={() => {
+                setIsPlaying(false);
+                setCurrentTime(0);
+                setProgress(0);
+              }}
+              onTimeUpdate={handleTimeUpdate}
+              onLoadedMetadata={handleLoadedMetadata}
+            >
+              <source src={VIDEO_URL} type="video/mp4" />
+
+              Your browser does not support HTML5 video. You can watch the
+              video directly using the link below.
+            </video>
 
             {/* Dark screen overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30" />
 
-            {/* Big center luxury Play button */}
+            {/* Center play button */}
             <AnimatePresence>
               {!isPlaying && (
                 <motion.button
                   id="showreel-play-center-btn"
+                  type="button"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   onClick={togglePlay}
-                  className="absolute inset-0 m-auto w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white/10 hover:bg-luxury-gold text-white hover:text-luxury-charcoal border border-white/20 hover:border-luxury-gold transition-all duration-500 shadow-2xl flex items-center justify-center group/play cursor-pointer z-20"
+                  className="group/play absolute inset-0 z-20 m-auto flex h-20 w-20 cursor-pointer items-center justify-center rounded-full border border-white/20 bg-white/10 text-white shadow-2xl transition-all duration-500 hover:border-luxury-gold hover:bg-luxury-gold hover:text-luxury-charcoal sm:h-24 sm:w-24"
+                  aria-label="Play showreel"
                 >
-                  <div className="absolute inset-0 rounded-full bg-white/5 animate-ping opacity-75 group-hover/play:bg-luxury-gold/20" />
-                  <Play size={24} className="fill-current translate-x-1" />
+                  <div className="absolute inset-0 animate-ping rounded-full bg-white/5 opacity-75 group-hover/play:bg-luxury-gold/20" />
+
+                  <Play
+                    size={24}
+                    className="translate-x-0.5 fill-current"
+                  />
                 </motion.button>
               )}
             </AnimatePresence>
 
-            {/* Playing Status Overlay with Soundwaves */}
-            {isPlaying && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/60 backdrop-blur-sm z-10 p-6 text-center space-y-6">
-                <div className="flex items-center gap-1.5 h-10">
-                  <div className="w-1 bg-luxury-gold h-4 rounded-full animate-[bounce_1s_infinite_100ms]" />
-                  <div className="w-1 bg-luxury-gold h-8 rounded-full animate-[bounce_1s_infinite_300ms]" />
-                  <div className="w-1 bg-luxury-gold h-12 rounded-full animate-[bounce_1s_infinite_500ms]" />
-                  <div className="w-1 bg-luxury-gold h-6 rounded-full animate-[bounce_1s_infinite_200ms]" />
-                  <div className="w-1 bg-luxury-gold h-10 rounded-full animate-[bounce_1s_infinite_400ms]" />
-                  <div className="w-1 bg-luxury-gold h-4 rounded-full animate-[bounce_1s_infinite_100ms]" />
-                </div>
-                <div className="space-y-1">
-                  <p className="text-xs font-display uppercase tracking-[0.3em] text-luxury-gold flex items-center justify-center gap-1.5">
-                    <Sparkles size={12} /> Ambient Streaming Active
-                  </p>
-                  <h4 className="text-lg font-serif text-white font-medium">
-                    RF Media Productions Showreel (Director's Cut)
-                  </h4>
-                </div>
-                <button
-                  id="showreel-pause-overlay-btn"
-                  onClick={togglePlay}
-                  className="px-6 py-2.5 bg-white/10 hover:bg-white/20 border border-white/10 text-xs font-display uppercase tracking-widest text-white rounded-sm transition-colors"
-                >
-                  Pause Screening
-                </button>
-              </div>
-            )}
-
-            {/* Tiny live overlay tags */}
-            <div className="absolute top-4 left-4 flex items-center gap-2">
-              <span className="text-[9px] font-display uppercase tracking-widest bg-black/40 text-[#B8B8B8] px-2.5 py-1 rounded-sm border border-white/5 backdrop-blur-sm">
-                4K HDR MASTER
+            {/* Video badges */}
+            <div className="pointer-events-none absolute top-4 left-4 z-20 flex items-center gap-2">
+              <span className="rounded-sm border border-white/5 bg-black/40 px-2.5 py-1 font-display text-[9px] tracking-widest text-[#B8B8B8] uppercase backdrop-blur-sm">
+                4K HDR Master
               </span>
             </div>
-            <div className="absolute top-4 right-4 flex items-center gap-2">
-              <span className="text-[9px] font-display uppercase tracking-widest bg-red-600/20 text-red-500 px-2.5 py-1 rounded-sm border border-red-500/10 font-bold backdrop-blur-sm">
-                DOLBY ATMOS
+
+            <div className="pointer-events-none absolute top-4 right-4 z-20 flex items-center gap-2">
+              <span className="rounded-sm border border-red-500/10 bg-red-600/20 px-2.5 py-1 font-display text-[9px] font-bold tracking-widest text-red-500 uppercase backdrop-blur-sm">
+                Dolby Atmos
               </span>
             </div>
           </div>
 
-          {/* Cinematic Controller Bar */}
-          <div className="p-4 bg-[#0B0B0B] border-t border-white/5 flex flex-wrap items-center justify-between gap-4">
-            {/* Play/Pause */}
-            <div className="flex items-center gap-4">
+          {/* Custom Video Controls */}
+          <div className="flex flex-wrap items-center justify-between gap-4 border-t border-white/5 bg-[#0B0B0B] p-4">
+            <div className="flex min-w-0 flex-1 items-center gap-4">
               <button
                 id="showreel-play-btn"
+                type="button"
                 onClick={togglePlay}
-                className="text-white hover:text-luxury-gold transition-colors"
-                aria-label={isPlaying ? 'Pause' : 'Play'}
+                className="shrink-0 text-white transition-colors hover:text-luxury-gold"
+                aria-label={isPlaying ? 'Pause video' : 'Play video'}
               >
                 {isPlaying ? (
                   <Pause size={18} />
@@ -153,45 +254,79 @@ export default function Showreel() {
                 )}
               </button>
 
-              {/* Progress Slider bar */}
-              <div className="w-32 sm:w-64 bg-white/10 h-[3px] rounded-full relative cursor-pointer group/progress">
-                <div
-                  className="bg-luxury-gold h-full rounded-full transition-all"
-                  style={{ width: `${isPlaying ? '65%' : '35%'}` }}
+              <button
+                type="button"
+                onClick={restartVideo}
+                className="shrink-0 text-white transition-colors hover:text-luxury-gold"
+                aria-label="Restart video"
+              >
+                <RotateCcw size={17} />
+              </button>
+
+              {/* Progress slider */}
+              <div className="relative min-w-[100px] flex-1 sm:max-w-md">
+                <div className="pointer-events-none absolute top-1/2 left-0 h-[3px] w-full -translate-y-1/2 rounded-full bg-white/10">
+                  <div
+                    className="h-full rounded-full bg-luxury-gold"
+                    style={{ width: `${progress}%` }}
+                  />
+                </div>
+
+                <input
+                  type="range"
+                  min="0"
+                  max="100"
+                  step="0.1"
+                  value={progress}
+                  onChange={handleSeek}
+                  className="relative z-10 h-5 w-full cursor-pointer opacity-0"
+                  aria-label="Video progress"
                 />
+
                 <div
-                  className="absolute top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-white opacity-0 group-hover/progress:opacity-100 transition-opacity"
-                  style={{ left: `calc(${isPlaying ? '65%' : '35%'} - 5px)` }}
+                  className="pointer-events-none absolute top-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white shadow"
+                  style={{ left: `${progress}%` }}
                 />
               </div>
 
-              <span className="text-[10px] font-mono text-[#B8B8B8] select-none">
-                {isPlaying ? '01:14' : '00:35'} / 02:00
+              <span className="shrink-0 font-mono text-[10px] text-[#B8B8B8] select-none">
+                {formatTime(currentTime)} / {formatTime(duration)}
               </span>
             </div>
 
-            {/* Mute and Screen Settings */}
             <div className="flex items-center gap-4">
               <button
                 id="showreel-mute-btn"
+                type="button"
                 onClick={handleMute}
-                className="text-white hover:text-luxury-gold transition-colors"
-                aria-label={isMuted ? 'Unmute' : 'Mute'}
+                className="text-white transition-colors hover:text-luxury-gold"
+                aria-label={isMuted ? 'Unmute video' : 'Mute video'}
               >
                 {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
               </button>
 
               <button
                 id="showreel-maximize-btn"
-                onClick={() => {
-                  alert('Immersive Cinema View maximized. (Simulation)');
-                }}
-                className="text-white hover:text-luxury-gold transition-colors"
-                aria-label="Fullscreen"
+                type="button"
+                onClick={openFullscreen}
+                className="text-white transition-colors hover:text-luxury-gold"
+                aria-label="Open video in fullscreen"
               >
                 <Maximize2 size={16} />
               </button>
             </div>
+          </div>
+
+          {/* Direct video link */}
+          <div className="border-t border-white/5 bg-black/80 px-4 py-3 text-center">
+            <a
+              href={VIDEO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-display text-[10px] tracking-[0.2em] text-luxury-silver uppercase transition-colors hover:text-luxury-gold"
+            >
+              Open video in a new tab
+            </a>
           </div>
         </div>
       </div>

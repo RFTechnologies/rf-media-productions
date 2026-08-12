@@ -34,7 +34,7 @@ export default function ServicesSection({ onOpenInquiry }: ServicesSectionProps)
 
         <main className="space-y-14 md:space-y-16">
           {SERVICES.map((category, idx) => {
-            const IconComponent = (LucideIcons as any)[category.iconName] || LucideIcons.Sparkles;
+            const IconComponent = (LucideIcons as any)[category.iconName as string] || LucideIcons.Sparkles;
             return (
               <motion.section
                 key={category.id}

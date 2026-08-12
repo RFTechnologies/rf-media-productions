@@ -7,7 +7,7 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="py-24 md:py-32 bg-[#0B0B0B] relative overflow-hidden px-6 md:px-12"
+      className="py-24 md:py-32 bg-[#0B0B0B] relative overflow-hidden px-6 md:px-12 border-y border-white/5"
     >
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
         {/* Left Column: Visual frame */}
@@ -17,7 +17,7 @@ export default function AboutSection() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-5 relative group min-h-96"
+          className="lg:col-span-5 relative group min-md:min-h-150 min-h-80"
         >
           {/* Accent thin double-border frame */}
           <div className="absolute -inset-4 border border-white/5 rounded-none pointer-events-none group-hover:border-luxury-gold/20 transition-colors duration-500" />

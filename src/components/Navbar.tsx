@@ -30,21 +30,20 @@ export default function Navbar({ onOpenInquiry }: NavbarProps) {
   const menuItems = [
     { label: 'About', id: 'about' },
     { label: 'Services', id: 'services' },
-    { label: 'Featured Work', id: 'featured-work' },
+    { label: 'Our Brands', id: 'our-brand' },
     { label: 'Showreel', id: 'showreel' },
     { label: 'Process', id: 'process' },
-    { label: 'Miles & Meals', id: 'miles-meals' },
+    // { label: 'Miles & Meals', id: 'miles-meals' },
   ];
 
   return (
     <>
       <header
         id="luxury-header"
-        className={`fixed top-0 left-0 w-full z-40 transition-all duration-500 ${
-          isScrolled
-            ? 'bg-luxury-charcoal/85 border-b border-white/5 backdrop-blur-xl py-4'
-            : 'bg-transparent py-6'
-        }`}
+        className={`fixed top-0 left-0 w-full z-40 transition-all duration-500 ${isScrolled
+          ? 'bg-luxury-charcoal/85 border-b border-white/5 backdrop-blur-xl py-4'
+          : 'bg-transparent py-6'
+          }`}
       >
         <div className="w-full mx-auto px-6 md:px-12 flex items-center justify-between">
           {/* Brand Logo */}
@@ -54,9 +53,9 @@ export default function Navbar({ onOpenInquiry }: NavbarProps) {
             className="group cursor-pointer"
           >
             <img
-              src={Logo}
+              src="https://res.cloudinary.com/dzmrdbwqh/image/upload/v1784194928/RF%20Media%20Production/Rf%20Media%20Production%20Logo.png"
               alt="RF Logo"
-              className="h-12.5 object-contain shrink-0"
+              className="h-14 object-contain shrink-0"
             />
           </button>
 
