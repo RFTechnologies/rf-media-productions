@@ -1,9 +1,8 @@
-export interface Service {
+export interface ServiceCategory {
   id: string;
   title: string;
-  description: string;
-  accentTitle?: string;
-  iconName: string; // Used to dynamically map Lucide icons
+  services: { id: string; title: string }[];
+  iconName?: string;
 }
 
 export interface Project {

@@ -81,22 +81,22 @@ export default function FooterSection() {
             <ul className="space-y-2.5 text-xs font-light">
               <li>
                 <a href="#services" className="hover:text-luxury-gold transition-colors">
-                  Hotel Promotions
+                  Media Production
                 </a>
               </li>
               <li>
                 <a href="#services" className="hover:text-luxury-gold transition-colors">
-                  Resort Marketing
+                  Digital Marketing
                 </a>
               </li>
               <li>
                 <a href="#services" className="hover:text-luxury-gold transition-colors">
-                  Food Cinematography
+                  Creative Design
                 </a>
               </li>
               <li>
                 <a href="#services" className="hover:text-luxury-gold transition-colors">
-                  Drone Cinematography
+                  Business Solutions
                 </a>
               </li>
             </ul>

@@ -19,7 +19,7 @@ export default function ProjectInquiryModal({
     phone: "",
     company: "",
     budget: "$5,000 - $10,000",
-    serviceType: "Luxury Hotel Promotions",
+    serviceType: "Complete Media Production",
     message: "",
     hotelRooms: "",
     location: "",
@@ -52,7 +52,7 @@ export default function ProjectInquiryModal({
       phone: "",
       company: "",
       budget: "$5,000 - $10,000",
-      serviceType: "Luxury Hotel Promotions",
+      serviceType: "Complete Media Production",
       message: "",
       hotelRooms: "",
       location: "",
@@ -241,13 +241,14 @@ export default function ProjectInquiryModal({
                         onChange={(e) => setFormData({ ...formData, serviceType: e.target.value })}
                         className="w-full bg-[#0b0b0b] border border-white/10 rounded-none py-3 px-4 text-white text-sm focus:outline-none focus:border-luxury-gold focus:ring-1 focus:ring-luxury-gold transition-all font-light"
                       >
-                        <option>Travel Productions</option>
-                        <option>Luxury Hotel Promotions</option>
-                        <option>Resort Marketing</option>
-                        <option>Tourism Campaigns</option>
-                        <option>Food Cinematography</option>
-                        <option>Commercial Advertisements</option>
-                        <option>Photography</option>
+                        <option>Complete Media Production</option>
+                        <option>TV Commercials (TVCs)</option>
+                        <option>Corporate Videos</option>
+                        <option>Digital Marketing Solutions</option>
+                        <option>Social Media Marketing</option>
+                        <option>Graphic Designing</option>
+                        <option>Video Editing</option>
+                        <option>Corporate Branding</option>
                       </select>
                     </div>
 
@@ -299,10 +300,10 @@ export default function ProjectInquiryModal({
                         onChange={(e) => setFormData({ ...formData, serviceType: e.target.value })}
                         className="w-full bg-[#0b0b0b] border border-white/10 rounded-none py-3 px-4 text-white text-sm focus:outline-none focus:border-luxury-gold focus:ring-1 focus:ring-luxury-gold transition-all font-light"
                       >
-                        <option>Digital Video Strategy</option>
-                        <option>Full-year Content Retainer</option>
-                        <option>Launch Campaign Coordination</option>
-                        <option>Photography Portfolio</option>
+                        <option>Complete Media Production</option>
+                        <option>Digital Marketing Solutions</option>
+                        <option>Graphic Designing</option>
+                        <option>Corporate Branding</option>
                       </select>
                     </div>
                   </div>

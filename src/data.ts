@@ -1,5 +1,5 @@
 import {
-  Service,
+  ServiceCategory,
   Project,
   Statistic,
   ChooseUsItem,
@@ -33,90 +33,84 @@ export const STATISTICS: Statistic[] = [
   { value: 100, suffix: '%', label: 'Passion Driven' },
 ];
 
-export const SERVICES: Service[] = [
+export const SERVICES: ServiceCategory[] = [
   {
-    id: 'travel-prod',
-    title: 'Travel Productions',
-    description:
-      'Cinematic, epic-scale travel expeditions that evoke strong wanderlust and pure emotional connection with global landscapes.',
-    iconName: 'Globe',
-  },
-  {
-    id: 'hotel-promos',
-    title: 'Luxury Hotel Promotions',
-    description:
-      'Visually arresting films highlighting bespoke architecture, world-class luxury services, and premium guest experiences.',
-    iconName: 'Hotel',
-  },
-  {
-    id: 'resort-mktg',
-    title: 'Resort Marketing',
-    description:
-      'Tailor-made multi-platform content campaigns capturing high-end amenities, private beaches, and pristine surroundings.',
-    iconName: 'Palmtree',
-  },
-  {
-    id: 'tourism-camp',
-    title: 'Tourism Campaigns',
-    description:
-      'Impactful tourism board promotional materials blending rich local culture, historical heritage, and cinematic vistas.',
-    iconName: 'Compass',
-  },
-  {
-    id: 'restaurant-promos',
-    title: 'Restaurant Promotions',
-    description:
-      'Sensory, mouth-watering visual campaigns showing the elegant soul, environment, and master culinary craft of premium venues.',
-    iconName: 'Utensils',
-  },
-  {
-    id: 'food-cinematography',
-    title: 'Food Cinematography',
-    description:
-      'Macro-lens slow-motion captures of steam, fluid motion, textures, and artisanal precision that transform food into visual art.',
-    iconName: 'Sparkles',
-  },
-  {
-    id: 'commercial-ads',
-    title: 'Commercial Advertisements',
-    description:
-      'Highly polished TV and social media ads combining meticulous lighting, brand strategy, and cinema-grade aesthetics.',
+    id: 'media-production',
+    title: 'Media Production',
     iconName: 'Film',
+    services: [
+      { id: 'complete-media-production', title: 'Complete Media Production' },
+      { id: 'tvc', title: 'TV Commercials (TVCs)' },
+      { id: 'documentary-production', title: 'Documentary Production' },
+      { id: 'corporate-videos', title: 'Corporate Videos' },
+      { id: 'brand-promotional-videos', title: 'Brand Promotional Videos' },
+      { id: 'music-videos', title: 'Music Videos' },
+      { id: 'youtube-channel-production-management', title: 'YouTube Channel Production & Management' },
+      { id: 'youtube-original-series', title: 'YouTube Original Series' },
+      { id: 'podcasts-interviews', title: 'Podcasts & Interviews' },
+      { id: 'dramas', title: 'Dramas' },
+      { id: 'telefilms', title: 'Telefilms' },
+      { id: 'feature-films', title: 'Feature Films' },
+      { id: 'horror-series', title: 'Horror Series' },
+      { id: 'historical-reenactment-dramas', title: 'Historical Reenactment Dramas' },
+      { id: 'sufi-azam-islamic-programs', title: 'Sufi Azam & Islamic Programs' },
+      { id: 'travel-tours-travel-vlogs', title: 'Travel Tours & Travel Vlogs' },
+      { id: 'event-coverage', title: 'Event Coverage' },
+      { id: 'road-shows', title: 'Road Shows' },
+      { id: 'complete-event-management', title: 'Complete Event Management' },
+      { id: 'professional-photography-videography', title: 'Professional Photography & Videography' },
+      { id: 'live-streaming-services', title: 'Live Streaming Services' },
+    ],
   },
   {
-    id: 'corporate-films',
-    title: 'Corporate Films',
-    description:
-      'Narratives that translate complex business vision into inspiring human stories for investors, partners, and customers.',
+    id: 'digital-marketing',
+    title: 'Digital Marketing',
+    iconName: 'TrendingUp',
+    services: [
+      { id: 'digital-marketing-solutions', title: 'Digital Marketing Solutions' },
+      { id: 'social-media-marketing', title: 'Social Media Marketing' },
+      { id: 'search-engine-optimization-seo', title: 'Search Engine Optimization (SEO)' },
+      { id: 'search-engine-marketing-sem', title: 'Search Engine Marketing (SEM)' },
+      { id: 'google-ads-meta-ads', title: 'Google Ads & Meta Ads' },
+      { id: 'youtube-seo-channel-growth', title: 'YouTube SEO & Channel Growth' },
+      { id: 'content-marketing', title: 'Content Marketing' },
+      { id: 'email-marketing', title: 'Email Marketing' },
+      { id: 'brand-strategy-online-reputation-management', title: 'Brand Strategy & Online Reputation Management' },
+      { id: 'lead-generation', title: 'Lead Generation' },
+      { id: 'performance-marketing', title: 'Performance Marketing' },
+    ],
+  },
+  {
+    id: 'creative-design',
+    title: 'Creative Design',
+    iconName: 'PenTool',
+    services: [
+      { id: 'graphic-designing', title: 'Graphic Designing' },
+      { id: 'logo-design-brand-identity', title: 'Logo Design & Brand Identity' },
+      { id: 'motion-graphics', title: 'Motion Graphics' },
+      { id: '2d-3d-animation', title: '2D & 3D Animation' },
+      { id: 'video-editing', title: 'Video Editing' },
+      { id: 'thumbnail-design', title: 'Thumbnail Design' },
+      { id: 'print-media-design', title: 'Print Media Design' },
+      { id: 'packaging-design', title: 'Packaging Design' },
+      { id: 'brochures-flyers-posters', title: 'Brochures, Flyers & Posters' },
+      { id: 'presentation-design', title: 'Presentation Design' },
+    ],
+  },
+  {
+    id: 'business-solutions',
+    title: 'Business Solutions',
     iconName: 'Briefcase',
-  },
-  {
-    id: 'photography',
-    title: 'Photography',
-    description:
-      'Elite editorial, architectural, interior, and food photography crafted with high-end medium format digital camera systems.',
-    iconName: 'Camera',
-  },
-  {
-    id: 'drone-cinematography',
-    title: 'Drone Cinematography',
-    description:
-      'Breathtaking FPV and high-altitude 4K HDR aerial perspectives capturing scales and views previously inaccessible.',
-    iconName: 'Tv',
-  },
-  {
-    id: 'social-media',
-    title: 'Social Media Content',
-    description:
-      'Highly engaging, natively formatted short-form videos (Reels, TikToks, Shorts) designed to drive viral distribution.',
-    iconName: 'Instagram',
-  },
-  {
-    id: 'video-editing',
-    title: 'Video Editing',
-    description:
-      'Surgical, rhythmic post-production, Hollywood-grade color grading, sound design, and custom cinematic soundtrack licensing.',
-    iconName: 'Layers',
+    services: [
+      { id: 'corporate-branding', title: 'Corporate Branding' },
+      { id: 'marketing-consultancy', title: 'Marketing Consultancy' },
+      { id: 'project-management', title: 'Project Management' },
+      { id: 'business-development', title: 'Business Development' },
+      { id: 'event-planning-coordination', title: 'Event Planning & Coordination' },
+      { id: 'creative-consultancy', title: 'Creative Consultancy' },
+      { id: 'media-buying-advertising', title: 'Media Buying & Advertising' },
+      { id: 'production', title: 'Production' },
+    ],
   },
 ];
 
