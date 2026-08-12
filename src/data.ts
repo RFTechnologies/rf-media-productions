@@ -31,8 +31,8 @@ export const BRANDS = [
 ];
 
 export const STATISTICS: Statistic[] = [
-  { value: 200, suffix: "+", label: "Projects Delivered" },
-  { value: 50, suffix: "+", label: "Brands Served" },
+  { value: 50, suffix: "+", label: "Projects Delivered" },
+  { value: 20, suffix: "+", label: "Brands Served" },
   { value: 5, suffix: "+", label: "Years Experience" },
   { value: 100, suffix: "%", label: "Passion Driven" },
 ];

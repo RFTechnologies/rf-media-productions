@@ -166,7 +166,19 @@ export default function FooterSection() {
               <li className="flex items-start gap-3">
                 <MapPin size={14} className="text-luxury-silver shrink-0 mt-0.5" />
                 <span className="text-white font-light leading-relaxed">
-                  2nd floor, Central Mall, GT Rd, Zaraj Housing Society DHA Phase II, Islamabad, 44000
+                 Al-Rizq Plaza, Office No. 1, Plaza No. 79, Wallayat Complex, Bahria Phase 7, Rawalpindi
+                </span>
+              </li>
+              <li className="flex items-start gap-3">
+                <MapPin size={14} className="text-luxury-silver shrink-0 mt-0.5" />
+                <span className="text-white font-light leading-relaxed">
+                 Office No. 101, United Tower, 45-C, 8th Street, 01, Phase Zulfiqar & Al Murtaza Commercial Area, Phase 8, Defence Housing Authority (DHA), Karachi, 75500
+                </span>
+              </li>
+              <li className="flex items-start gap-3">
+                <MapPin size={14} className="text-luxury-silver shrink-0 mt-0.5" />
+                <span className="text-white font-light leading-relaxed">
+                 Building No. 337-MB, B Block, DHA Phase 6 Commercial, DHA Lahore Cantt, Lahore
                 </span>
               </li>
             </ul>
