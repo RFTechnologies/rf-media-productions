@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, MessageSquare, Instagram, Youtube, Film, ArrowUp } from "lucide-react";
+import { Phone, Mail, MapPin, MessageSquare, Instagram, Youtube, Film, ArrowUp, Facebook } from "lucide-react";
 import Logo from '../assets/images/RF Logo Final2-01.png';
 export default function FooterSection() {
   const currentYear = new Date().getFullYear();
@@ -188,21 +188,13 @@ export default function FooterSection() {
         {/* Bottom Social Links & Copyright */}
         <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
           <p className="text-[10px] text-white/40 tracking-widest font-display text-center md:text-left">
-            © {currentYear} RF MEDIA PRODUCTIONS LTD. ALL RIGHTS RESERVED. IN COLLABORATION WITH THE WORLD'S FINEST BRANDS.
+            © {currentYear} Powered by RF Technologies. ALL RIGHTS RESERVED. IN COLLABORATION WITH THE WORLD'S FINEST BRANDS.
           </p>
 
           <div className="flex items-center gap-6">
+          
             <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-luxury-silver hover:text-luxury-gold transition-colors p-2 rounded-full hover:bg-white/5"
-              aria-label="Instagram"
-            >
-              <Instagram size={16} />
-            </a>
-            <a
-              href="https://youtube.com"
+              href="https://www.youtube.com/@Rfmediaproductions"
               target="_blank"
               rel="noopener noreferrer"
               className="text-luxury-silver hover:text-luxury-gold transition-colors p-2 rounded-full hover:bg-white/5"
@@ -211,13 +203,13 @@ export default function FooterSection() {
               <Youtube size={16} />
             </a>
             <a
-              href="https://vimeo.com"
+              href="https://www.facebook.com/Rfmediaproductions/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-luxury-silver hover:text-luxury-gold transition-colors p-2 rounded-full hover:bg-white/5"
-              aria-label="Vimeo / Film Portfolio"
+              aria-label="Facebook"
             >
-              <Film size={16} />
+              <Facebook size={16} />
             </a>
           </div>
         </div>

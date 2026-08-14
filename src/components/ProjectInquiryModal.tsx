@@ -39,9 +39,7 @@ type ApiResponse = {
  *
  * Do not append "/contact-us" again when calling fetch.
  */
-const CONTACT_API_URL =
-  "https://rftechnologies-api.vercel.app/contact-us";
-
+const CONTACT_API_URL = "https://rftechnologies-api.vercel.app/contact-us";
 
 const inquiryFormSchema = z
   .object({
@@ -65,19 +63,13 @@ const inquiryFormSchema = z
       .trim()
       .min(7, "Please enter a valid phone number.")
       .max(30, "Phone number cannot exceed 30 characters.")
-      .regex(
-        /^[+\d][\d\s()+-]*$/,
-        "Please enter a valid phone number."
-      ),
+      .regex(/^[+\d][\d\s()+-]*$/, "Please enter a valid phone number."),
 
     company: z
       .string()
       .trim()
       .min(2, "Brand or company name is required.")
-      .max(
-        150,
-        "Brand or company name cannot exceed 150 characters."
-      ),
+      .max(150, "Brand or company name cannot exceed 150 characters."),
 
     budget: z.string().trim(),
 
@@ -86,14 +78,8 @@ const inquiryFormSchema = z
     message: z
       .string()
       .trim()
-      .min(
-        10,
-        "Please provide at least 10 characters about your project."
-      )
-      .max(
-        3000,
-        "Project brief cannot exceed 3000 characters."
-      ),
+      .min(10, "Please provide at least 10 characters about your project.")
+      .max(3000, "Project brief cannot exceed 3000 characters."),
 
     hotelRooms: z.string(),
 
@@ -139,17 +125,12 @@ const inquiryFormSchema = z
         return;
       }
 
-      const selectedDate = new Date(
-        `${data.preferredDate}T00:00:00`
-      );
+      const selectedDate = new Date(`${data.preferredDate}T00:00:00`);
 
       const today = new Date();
       today.setHours(0, 0, 0, 0);
 
-      if (
-        Number.isNaN(selectedDate.getTime()) ||
-        selectedDate < today
-      ) {
+      if (Number.isNaN(selectedDate.getTime()) || selectedDate < today) {
         context.addIssue({
           code: z.ZodIssueCode.custom,
           path: ["preferredDate"],
@@ -167,15 +148,11 @@ const inquiryFormSchema = z
           path: ["hotelRooms"],
           message: "Please enter the total number of rooms.",
         });
-      } else if (
-        !Number.isInteger(rooms) ||
-        rooms < 1
-      ) {
+      } else if (!Number.isInteger(rooms) || rooms < 1) {
         context.addIssue({
           code: z.ZodIssueCode.custom,
           path: ["hotelRooms"],
-          message:
-            "Total rooms must be a whole number greater than zero.",
+          message: "Total rooms must be a whole number greater than zero.",
         });
       }
 
@@ -197,13 +174,9 @@ const inquiryFormSchema = z
     }
   });
 
-type InquiryFormValues = z.infer<
-  typeof inquiryFormSchema
->;
+type InquiryFormValues = z.infer<typeof inquiryFormSchema>;
 
-const getDefaultValues = (
-  formType: FormType
-): InquiryFormValues => {
+const getDefaultValues = (formType: FormType): InquiryFormValues => {
   return {
     formType,
     name: "",
@@ -213,7 +186,7 @@ const getDefaultValues = (
     budget:
       formType === "hotel"
         ? "Full resort (including aerial drone)"
-        : "$5,000 - $10,000",
+        : "5000 PKR",
     serviceType:
       formType === "call"
         ? "Digital Video Strategy"
@@ -232,11 +205,11 @@ export default function ProjectInquiryModal({
   onClose,
   initialType = "project",
 }: ProjectInquiryModalProps) {
-  const [isSubmitted, setIsSubmitted] =
-    useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const [submittedData, setSubmittedData] =
-    useState<InquiryFormValues | null>(null);
+  const [submittedData, setSubmittedData] = useState<InquiryFormValues | null>(
+    null,
+  );
 
   const {
     register,
@@ -245,10 +218,7 @@ export default function ProjectInquiryModal({
     setValue,
     watch,
     clearErrors,
-    formState: {
-      errors,
-      isSubmitting,
-    },
+    formState: { errors, isSubmitting },
   } = useForm<InquiryFormValues>({
     resolver: zodResolver(inquiryFormSchema),
     defaultValues: getDefaultValues(initialType),
@@ -264,9 +234,7 @@ export default function ProjectInquiryModal({
     setSubmittedData(null);
   }, [initialType, reset]);
 
-  const handleFormTypeChange = (
-    type: FormType
-  ) => {
+  const handleFormTypeChange = (type: FormType) => {
     setValue("formType", type, {
       shouldDirty: true,
       shouldValidate: true,
@@ -285,27 +253,19 @@ export default function ProjectInquiryModal({
     setValue("location", "");
 
     if (type === "project") {
-      setValue(
-        "serviceType",
-        "Luxury Hotel Promotions",
-        {
-          shouldValidate: true,
-        }
-      );
+      setValue("serviceType", "Luxury Hotel Promotions", {
+        shouldValidate: true,
+      });
 
-      setValue("budget", "$5,000 - $10,000", {
+      setValue("budget", "5000 PKR", {
         shouldValidate: true,
       });
     }
 
     if (type === "call") {
-      setValue(
-        "serviceType",
-        "Digital Video Strategy",
-        {
-          shouldValidate: true,
-        }
-      );
+      setValue("serviceType", "Digital Video Strategy", {
+        shouldValidate: true,
+      });
 
       setValue("budget", "");
     }
@@ -313,37 +273,29 @@ export default function ProjectInquiryModal({
     if (type === "hotel") {
       setValue("serviceType", "");
 
-      setValue(
-        "budget",
-        "Full resort (including aerial drone)",
-        {
-          shouldValidate: true,
-        }
-      );
+      setValue("budget", "Full resort (including aerial drone)", {
+        shouldValidate: true,
+      });
     }
   };
 
-  const createApiMessage = (
-    data: InquiryFormValues
-  ): string => {
+  const createApiMessage = (data: InquiryFormValues): string => {
     const details: string[] = [
-      `Inquiry Type: ${getInquiryTypeLabel(
-        data.formType
-      )}`,
+      `Inquiry Type: ${getInquiryTypeLabel(data.formType)}`,
       `Company / Brand: ${data.company.trim()}`,
     ];
 
     if (data.formType === "project") {
       details.push(
         `Service Required: ${data.serviceType}`,
-        `Project Budget: ${data.budget}`
+        `Project Budget: ${data.budget}`,
       );
     }
 
     if (data.formType === "call") {
       details.push(
         `Focus Area: ${data.serviceType}`,
-        `Preferred Consultation Date: ${data.preferredDate}`
+        `Preferred Consultation Date: ${data.preferredDate}`,
       );
     }
 
@@ -351,25 +303,17 @@ export default function ProjectInquiryModal({
       details.push(
         `Total Keys / Rooms: ${data.hotelRooms}`,
         `Property Location: ${data.location.trim()}`,
-        `Coverage Scale: ${data.budget}`
+        `Coverage Scale: ${data.budget}`,
       );
     }
 
-    details.push(
-      "",
-      "Narrative Idea / Project Brief:",
-      data.message.trim()
-    );
+    details.push("", "Narrative Idea / Project Brief:", data.message.trim());
 
     return details.join("\n");
   };
 
-  const onSubmit = async (
-    data: InquiryFormValues
-  ) => {
-    const toastId = toast.loading(
-      "Submitting your production inquiry..."
-    );
+  const onSubmit = async (data: InquiryFormValues) => {
+    const toastId = toast.loading("Submitting your production inquiry...");
 
     try {
       const requestData = new FormData();
@@ -377,16 +321,10 @@ export default function ProjectInquiryModal({
       requestData.append("name", data.name.trim());
       requestData.append("email", data.email.trim());
       requestData.append("phone", data.phone.trim());
-      requestData.append(
-        "message",
-        createApiMessage(data)
-      );
+      requestData.append("message", createApiMessage(data));
       requestData.append("join_us", "false");
 
-      console.log(
-        "Submitting form to:",
-        CONTACT_API_URL
-      );
+      console.log("Submitting form to:", CONTACT_API_URL);
 
       const response = await fetch(CONTACT_API_URL, {
         method: "POST",
@@ -398,22 +336,18 @@ export default function ProjectInquiryModal({
       if (!response.ok) {
         throw new Error(
           result?.message ||
-          result?.error ||
-          `Request failed with status ${response.status}.`
+            result?.error ||
+            `Request failed with status ${response.status}.`,
         );
       }
 
-      const responseStatus =
-        result?.status?.trim().toLowerCase();
+      const responseStatus = result?.status?.trim().toLowerCase();
 
-      if (
-        responseStatus &&
-        responseStatus !== "success"
-      ) {
+      if (responseStatus && responseStatus !== "success") {
         throw new Error(
           result?.message ||
-          result?.error ||
-          "The server could not process your request."
+            result?.error ||
+            "The server could not process your request.",
         );
       }
 
@@ -430,13 +364,9 @@ export default function ProjectInquiryModal({
         closeOnClick: true,
       });
     } catch (error) {
-      console.error(
-        "Project inquiry submission failed:",
-        error
-      );
+      console.error("Project inquiry submission failed:", error);
 
-      let errorMessage =
-        "Something went wrong while submitting your request.";
+      let errorMessage = "Something went wrong while submitting your request.";
 
       if (error instanceof TypeError) {
         errorMessage =
@@ -456,9 +386,7 @@ export default function ProjectInquiryModal({
   };
 
   const onInvalidSubmit = () => {
-    toast.error(
-      "Please correct the highlighted fields before submitting."
-    );
+    toast.error("Please correct the highlighted fields before submitting.");
   };
 
   const handleReset = () => {
@@ -552,14 +480,11 @@ export default function ProjectInquiryModal({
                     </span>
 
                     <h3 className="font-serif text-2xl font-medium text-white md:text-3xl">
-                      {formType === "project" &&
-                        "Initiate Your Production"}
+                      {formType === "project" && "Initiate Your Production"}
 
-                      {formType === "call" &&
-                        "Book a Cinematic Strategy Call"}
+                      {formType === "call" && "Book a Cinematic Strategy Call"}
 
-                      {formType === "hotel" &&
-                        "Request Elite Hotel Coverage"}
+                      {formType === "hotel" && "Request Elite Hotel Coverage"}
                     </h3>
 
                     <p className="mt-2 text-sm font-light text-luxury-silver">
@@ -580,13 +505,12 @@ export default function ProjectInquiryModal({
                       id="tab-project"
                       type="button"
                       disabled={isSubmitting}
-                      onClick={() =>
-                        handleFormTypeChange("project")
-                      }
-                      className={`rounded-none py-2 font-display text-xs tracking-wider transition-all disabled:cursor-not-allowed ${formType === "project"
+                      onClick={() => handleFormTypeChange("project")}
+                      className={`rounded-none py-2 font-display text-xs tracking-wider transition-all disabled:cursor-not-allowed ${
+                        formType === "project"
                           ? "bg-luxury-gold font-semibold text-luxury-charcoal"
                           : "text-[#B8B8B8] hover:bg-white/5 hover:text-white"
-                        }`}
+                      }`}
                     >
                       Project
                     </button>
@@ -595,13 +519,12 @@ export default function ProjectInquiryModal({
                       id="tab-call"
                       type="button"
                       disabled={isSubmitting}
-                      onClick={() =>
-                        handleFormTypeChange("call")
-                      }
-                      className={`rounded-none py-2 font-display text-xs tracking-wider transition-all disabled:cursor-not-allowed ${formType === "call"
+                      onClick={() => handleFormTypeChange("call")}
+                      className={`rounded-none py-2 font-display text-xs tracking-wider transition-all disabled:cursor-not-allowed ${
+                        formType === "call"
                           ? "bg-luxury-gold font-semibold text-luxury-charcoal"
                           : "text-[#B8B8B8] hover:bg-white/5 hover:text-white"
-                        }`}
+                      }`}
                     >
                       Discovery Call
                     </button>
@@ -610,13 +533,12 @@ export default function ProjectInquiryModal({
                       id="tab-hotel"
                       type="button"
                       disabled={isSubmitting}
-                      onClick={() =>
-                        handleFormTypeChange("hotel")
-                      }
-                      className={`rounded-none py-2 font-display text-xs tracking-wider transition-all disabled:cursor-not-allowed ${formType === "hotel"
+                      onClick={() => handleFormTypeChange("hotel")}
+                      className={`rounded-none py-2 font-display text-xs tracking-wider transition-all disabled:cursor-not-allowed ${
+                        formType === "hotel"
                           ? "bg-luxury-gold font-semibold text-luxury-charcoal"
                           : "text-[#B8B8B8] hover:bg-white/5 hover:text-white"
-                        }`}
+                      }`}
                     >
                       Hotel Partnership
                     </button>
@@ -624,17 +546,11 @@ export default function ProjectInquiryModal({
 
                   {/* Form */}
                   <form
-                    onSubmit={handleSubmit(
-                      onSubmit,
-                      onInvalidSubmit
-                    )}
+                    onSubmit={handleSubmit(onSubmit, onInvalidSubmit)}
                     noValidate
                     className="space-y-6"
                   >
-                    <input
-                      type="hidden"
-                      {...register("formType")}
-                    />
+                    <input type="hidden" {...register("formType")} />
 
                     {/* Name and Email */}
                     <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -648,14 +564,10 @@ export default function ProjectInquiryModal({
                           type="text"
                           autoComplete="name"
                           disabled={isSubmitting}
-                          placeholder="e.g. Adrian Soneva"
-                          aria-invalid={Boolean(
-                            errors.name
-                          )}
+                          placeholder="e.g. Hamza Ali"
+                          aria-invalid={Boolean(errors.name)}
                           {...register("name")}
-                          className={getInputClass(
-                            Boolean(errors.name)
-                          )}
+                          className={getInputClass(Boolean(errors.name))}
                         />
                       </FormField>
 
@@ -669,14 +581,10 @@ export default function ProjectInquiryModal({
                           type="email"
                           autoComplete="email"
                           disabled={isSubmitting}
-                          placeholder="e.g. adrian@resort.com"
-                          aria-invalid={Boolean(
-                            errors.email
-                          )}
+                          placeholder="e.g. hamzaali123.com"
+                          aria-invalid={Boolean(errors.email)}
                           {...register("email")}
-                          className={getInputClass(
-                            Boolean(errors.email)
-                          )}
+                          className={getInputClass(Boolean(errors.email))}
                         />
                       </FormField>
                     </div>
@@ -693,14 +601,10 @@ export default function ProjectInquiryModal({
                           type="tel"
                           autoComplete="tel"
                           disabled={isSubmitting}
-                          placeholder="e.g. +1 (555) 019-2831"
-                          aria-invalid={Boolean(
-                            errors.phone
-                          )}
+                          placeholder="e.g. +92312456115"
+                          aria-invalid={Boolean(errors.phone)}
                           {...register("phone")}
-                          className={getInputClass(
-                            Boolean(errors.phone)
-                          )}
+                          className={getInputClass(Boolean(errors.phone))}
                         />
                       </FormField>
 
@@ -715,13 +619,9 @@ export default function ProjectInquiryModal({
                           autoComplete="organization"
                           disabled={isSubmitting}
                           placeholder="e.g. Aman Group"
-                          aria-invalid={Boolean(
-                            errors.company
-                          )}
+                          aria-invalid={Boolean(errors.company)}
                           {...register("company")}
-                          className={getInputClass(
-                            Boolean(errors.company)
-                          )}
+                          className={getInputClass(Boolean(errors.company))}
                         />
                       </FormField>
                     </div>
@@ -732,19 +632,15 @@ export default function ProjectInquiryModal({
                         <FormField
                           label="Service Required"
                           htmlFor="select-service"
-                          error={
-                            errors.serviceType?.message
-                          }
+                          error={errors.serviceType?.message}
                         >
                           <select
                             id="select-service"
                             disabled={isSubmitting}
-                            aria-invalid={Boolean(
-                              errors.serviceType
-                            )}
+                            aria-invalid={Boolean(errors.serviceType)}
                             {...register("serviceType")}
                             className={getInputClass(
-                              Boolean(errors.serviceType)
+                              Boolean(errors.serviceType),
                             )}
                           >
                             <option value="Travel Productions">
@@ -771,44 +667,26 @@ export default function ProjectInquiryModal({
                               Commercial Advertisements
                             </option>
 
-                            <option value="Photography">
-                              Photography
-                            </option>
+                            <option value="Photography">Photography</option>
+                            <option value="Others">Others</option>
                           </select>
                         </FormField>
 
                         <FormField
-                          label="Project Budget (USD)"
-                          htmlFor="select-budget"
+                          label="Project Budget"
+                          htmlFor="input-budget"
                           error={errors.budget?.message}
                         >
-                          <select
-                            id="select-budget"
+                          <input
+                            id="input-budget"
+                            type="text"
+                            autoComplete="off"
                             disabled={isSubmitting}
-                            aria-invalid={Boolean(
-                              errors.budget
-                            )}
+                            placeholder="e.g. 5,000 PKR"
+                            aria-invalid={Boolean(errors.budget)}
                             {...register("budget")}
-                            className={getInputClass(
-                              Boolean(errors.budget)
-                            )}
-                          >
-                            <option value="$5,000 - $10,000">
-                              $5,000 - $10,000
-                            </option>
-
-                            <option value="$10,000 - $25,000">
-                              $10,000 - $25,000
-                            </option>
-
-                            <option value="$25,000 - $50,000">
-                              $25,000 - $50,000
-                            </option>
-
-                            <option value="$50,000+">
-                              $50,000+
-                            </option>
-                          </select>
+                            className={getInputClass(Boolean(errors.budget))}
+                          />
                         </FormField>
                       </div>
                     )}
@@ -827,20 +705,16 @@ export default function ProjectInquiryModal({
                             </span>
                           }
                           htmlFor="input-date"
-                          error={
-                            errors.preferredDate?.message
-                          }
+                          error={errors.preferredDate?.message}
                         >
                           <input
                             id="input-date"
                             type="date"
                             disabled={isSubmitting}
-                            aria-invalid={Boolean(
-                              errors.preferredDate
-                            )}
+                            aria-invalid={Boolean(errors.preferredDate)}
                             {...register("preferredDate")}
                             className={getInputClass(
-                              Boolean(errors.preferredDate)
+                              Boolean(errors.preferredDate),
                             )}
                           />
                         </FormField>
@@ -848,19 +722,15 @@ export default function ProjectInquiryModal({
                         <FormField
                           label="Focus Area"
                           htmlFor="select-focus"
-                          error={
-                            errors.serviceType?.message
-                          }
+                          error={errors.serviceType?.message}
                         >
                           <select
                             id="select-focus"
                             disabled={isSubmitting}
-                            aria-invalid={Boolean(
-                              errors.serviceType
-                            )}
+                            aria-invalid={Boolean(errors.serviceType)}
                             {...register("serviceType")}
                             className={getInputClass(
-                              Boolean(errors.serviceType)
+                              Boolean(errors.serviceType),
                             )}
                           >
                             <option value="Digital Video Strategy">
@@ -878,6 +748,7 @@ export default function ProjectInquiryModal({
                             <option value="Photography Portfolio">
                               Photography Portfolio
                             </option>
+                            <option value="Others">Others</option>
                           </select>
                         </FormField>
                       </div>
@@ -897,9 +768,7 @@ export default function ProjectInquiryModal({
                             </span>
                           }
                           htmlFor="input-rooms"
-                          error={
-                            errors.hotelRooms?.message
-                          }
+                          error={errors.hotelRooms?.message}
                         >
                           <input
                             id="input-rooms"
@@ -908,12 +777,10 @@ export default function ProjectInquiryModal({
                             step="1"
                             disabled={isSubmitting}
                             placeholder="e.g. 85"
-                            aria-invalid={Boolean(
-                              errors.hotelRooms
-                            )}
+                            aria-invalid={Boolean(errors.hotelRooms)}
                             {...register("hotelRooms")}
                             className={getInputClass(
-                              Boolean(errors.hotelRooms)
+                              Boolean(errors.hotelRooms),
                             )}
                           />
                         </FormField>
@@ -929,32 +796,23 @@ export default function ProjectInquiryModal({
                             </span>
                           }
                           htmlFor="input-location"
-                          error={
-                            errors.location?.message
-                          }
+                          error={errors.location?.message}
                         >
                           <input
                             id="input-location"
                             type="text"
                             disabled={isSubmitting}
                             placeholder="e.g. Kyoto, Japan"
-                            aria-invalid={Boolean(
-                              errors.location
-                            )}
+                            aria-invalid={Boolean(errors.location)}
                             {...register("location")}
-                            className={getInputClass(
-                              Boolean(errors.location)
-                            )}
+                            className={getInputClass(Boolean(errors.location))}
                           />
                         </FormField>
 
                         <FormField
                           label={
                             <span className="flex items-center gap-1">
-                              <Video
-                                size={12}
-                                className="text-luxury-silver"
-                              />
+                              <Video size={12} className="text-luxury-silver" />
                               Coverage Scale
                             </span>
                           }
@@ -964,17 +822,12 @@ export default function ProjectInquiryModal({
                           <select
                             id="select-hotel-scale"
                             disabled={isSubmitting}
-                            aria-invalid={Boolean(
-                              errors.budget
-                            )}
+                            aria-invalid={Boolean(errors.budget)}
                             {...register("budget")}
-                            className={getInputClass(
-                              Boolean(errors.budget)
-                            )}
+                            className={getInputClass(Boolean(errors.budget))}
                           >
                             <option value="Full resort (including aerial drone)">
-                              Full resort (including aerial
-                              drone)
+                              Full resort (including aerial drone)
                             </option>
 
                             <option value="Restaurant & culinary focus">
@@ -1000,12 +853,10 @@ export default function ProjectInquiryModal({
                         rows={4}
                         disabled={isSubmitting}
                         placeholder="Describe the mood, target emotion, or specific elements of your property or brand that make it extraordinary..."
-                        aria-invalid={Boolean(
-                          errors.message
-                        )}
+                        aria-invalid={Boolean(errors.message)}
                         {...register("message")}
                         className={`${getInputClass(
-                          Boolean(errors.message)
+                          Boolean(errors.message),
                         )} resize-none`}
                       />
                     </FormField>
@@ -1078,9 +929,8 @@ export default function ProjectInquiryModal({
                     <span className="text-luxury-gold">
                       {submittedData?.company}
                     </span>{" "}
-                    has been securely routed to our chief
-                    directors. We will contact you within 12
-                    hours via{" "}
+                    has been securely routed to our chief directors. We will
+                    contact you within 12 hours via{" "}
                     <strong className="text-white">
                       {submittedData?.email}
                     </strong>{" "}
@@ -1114,12 +964,7 @@ interface FormFieldProps {
   children: React.ReactNode;
 }
 
-function FormField({
-  label,
-  htmlFor,
-  error,
-  children,
-}: FormFieldProps) {
+function FormField({ label, htmlFor, error, children }: FormFieldProps) {
   return (
     <div className="space-y-1">
       <label
@@ -1132,10 +977,7 @@ function FormField({
       {children}
 
       {error && (
-        <p
-          role="alert"
-          className="text-xs leading-relaxed text-red-400"
-        >
+        <p role="alert" className="text-xs leading-relaxed text-red-400">
           {error}
         </p>
       )}
@@ -1143,9 +985,7 @@ function FormField({
   );
 }
 
-function getInputClass(
-  hasError: boolean
-): string {
+function getInputClass(hasError: boolean): string {
   return [
     "w-full rounded-none bg-[#0b0b0b] px-4 py-3",
     "border text-sm font-light text-white transition-all",
@@ -1157,9 +997,7 @@ function getInputClass(
   ].join(" ");
 }
 
-function getInquiryTypeLabel(
-  type: FormType
-): string {
+function getInquiryTypeLabel(type: FormType): string {
   if (type === "call") {
     return "Discovery Call";
   }
@@ -1172,7 +1010,7 @@ function getInquiryTypeLabel(
 }
 
 async function readApiResponse(
-  response: Response
+  response: Response,
 ): Promise<ApiResponse | null> {
   const responseText = await response.text();
 
